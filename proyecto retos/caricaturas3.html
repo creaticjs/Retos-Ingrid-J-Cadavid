@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Caricaturas2</title>
+    <style>
+    .button
+     {
+       display: inline-block;
+       padding: 10px 15px;
+       cursor: pointer;
+       text-align: center;
+       text-decoration: none;
+       outline: none;
+       color: #fff;
+       background-color: #1D637B;
+       border: none;
+       border-radius: 15px;
+       box-shadow: 0 9px #999;
+     }
+    .button:hover
+    {
+      background-color: #063343
+    }
+    .button:active
+    {
+      background-color: #063343;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+    </style>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  </head>
+  <body>
+    <!-- Dropdown Structure -->
+   
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo"></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="dropdown-trigger" href="index.html" >Incio<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="calculadora2.html" >Reto 1<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="retos2.html" >Reto 2<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="retos3.html" >Reto 3<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="caricaturas3.html" >Reto 4<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>Caricaturas</h1>
+    <input type="button" class="button" value="Caricaturas Varias" onclick="getAllDatos()"></button>
+    <input type="button" class="button" value="Caricaturas ingeniería" onclick="getAllDatosIng()"></button>
+    <div id="contenedor"></div>
+    <script>
+        
+      function getP(url) {
+        return new Promise(function(resolve, reject) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+              if (this.status == 200) {
+                resolve(JSON.parse(this.responseText));
+              } else {
+                reject("Error: 🤮" + this.status);
+              }
+            }
+          };
+          xhttp.open("GET", url);
+          
+          xhttp.send();
+        });
+      }
+      
+      async function getAllDatos() {
+        var arrUrl = [
+        
+                "http://xkcd.com/319/info.0.json",
+                "http://xkcd.com/26/info.0.json",
+                "http://xkcd.com/1883/info.0.json",
+                "http://xkcd.com/10/info.0.json",
+                "http://xkcd.com/2127/info.0.json"
+          
+        ];
+        var promesas = arrUrl.map(function(url) {
+          return getP(url);
+        });
+        try {
+          var caricatura = await Promise.all(promesas);
+          console.log(caricatura);
+          var conte = document.getElementById("contenedor");
+          conte.innerHTML = "";
+          var auxHtlm = "";
+          caricatura.forEach(function(p, i) {
+            auxHtlm += `<div onclick="haceralgo('${ p.title }')"><h1>${p.title}</h1></div>`;
+            auxHtlm += `<div onclick="haceralgo('${ p.img }')"><p>${p.img}</p></div>`;
+            auxHtlm += `<div onclick="haceralgo('img src=${ p.img }')"><p><img src=${p.img}></p></div>`;
+            
+          });
+          conte.innerHTML = auxHtlm;
+        } catch (error) {}
+      }
+      async function getAllDatosIng() {
+        var arrUrl = [];
+        var num = 732;
+        for (i = 0; i < 12; i++) {
+          
+          arrUrl.push("http://xkcd.com/"+num+"/info.0.json");
+          num++;
+        }
+        var promesas = arrUrl.map(function(url) {
+          return getP(url);
+        });
+        try {
+          var caricatura = await Promise.all(promesas);
+          console.log(caricatura);
+          var conte = document.getElementById("contenedor");
+          conte.innerHTML = "";
+          var auxHtlm = "";
+          caricatura.forEach(function(p, i) {
+            auxHtlm += `<div onclick="haceralgo('${ p.title }')"><h1>${p.title}</h1></div>`;
+            auxHtlm += `<div onclick="haceralgo('${ p.img }')"><p>${p.img}</p></div>`;
+            auxHtlm += `<div onclick="haceralgo('img src=${ p.img }')"><p><img src=${p.img}></p></div>`;
+            
+          });
+          conte.innerHTML = auxHtlm;
+        } catch (error) {}
+      }
+      function haceralgo(par) {
+        console.log(par);
+      }
+    </script>
+    
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <footer class="page-footer orange">
+                        
+        <div class="footer-copyright">
+            <div class="container">
+                Ingrid Juliana Cadavid Villa<br>
+                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+        </div>
+    </footer>
+                
+                
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+  </body>
+</html>

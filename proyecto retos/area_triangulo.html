@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5-área triángulo</title>
+    
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <style type="text/css">
+		
+     
+        * {
+            margin:0px;
+            padding:0px;
+        }
+        
+        #header {
+            margin:auto;
+            width:500px;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        
+        ul, ol {
+            list-style:none;
+        }
+        
+        .nav > li {
+            float:left;
+        }
+        
+        .nav li a {
+            background-color:#1FBEE8;
+            color:#fff;
+            text-decoration:none;
+            padding:10px 12px;
+            display:block;
+        }
+        
+        .nav li a:hover {
+            background-color:#596EC3;
+        }
+        
+        .nav li ul {
+            display:none;
+            position:absolute;
+            min-width:140px;
+        }
+        
+        .nav li:hover > ul {
+            display:block;
+        }
+        
+        .nav li ul li {
+            position:relative;
+        }
+        
+        .nav li ul li ul {
+            right:-140px;
+            top:0px;
+        }
+        
+    </style>
+</head>
+<body>
+      
+
+    <div id="header">
+        <ul class="nav">
+            
+                <li><a href="index.html" >Incio<i class="material-icons right">arrow_drop_down</i></a></li>
+            
+            <li><a href="">Fórmulas</a>
+                <ul>
+                    <li><a href="estudiante2.html">Calcular media</a></li>
+                    <li><a href="fuerza_atraccion.html">Fuerza de atracción</a></li>
+                    <li><a href="Einstein.html">Fórmula de Einstein</a></li>
+                    <li><a href="hipotenusa.html">Calcular hipotenusa</a></li>
+                    <li><a href="area_triangulo.html">Área de triángulo</a></li>
+                    <li><a href="circulo.html">Operaciones círculo</a></li>
+                    <li><a href="digitos.html">Redondear cifra</a></li>
+                    <li><a href="ecuaciones.html">Ecuaciones lineales</a></li>
+                    <li><a href="salario.html">Salario</a></li>
+                    <li><a href="cambio_optimo.html">Cambio óptimo</a></li>
+                    <li><a href="numero.html">Verificar positivo, cero o negativo</a></li>
+                </ul>
+            </li>
+            <li><a href="">Fecha y hora</a>    
+                <ul>
+                    <li><a href="conversion_hora.html">Formato 24 horas a 12 horas</a></li>
+                    <li><a href="conversion_fecha.html">Formato fecha</a></li>
+                    <li><a href="edad.html">Calcular edad</a></li>
+                    <li><a href="bisiesto.html">Año bisiesto</a></li>
+                    <li><a href="dias_mes.html">Calcular días del mes</a></li>
+                </ul>       
+            </li>
+            <li><a href="">Textos</a>
+                <ul>
+                    <li><a href="conversion_numero.html">Formato numero</a></li>
+                    <li><a href="romanos.html">Conversión romanos</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    <br> <br> <br>
+    <div class="container">
+        <div class="row">
+            <div class="col s3 offset-s3"><span class="flow-text"></span>
+                <p>Calculo del área de un triángulo</p><br>
+                <p>Lado a:</p><br>
+                <input type="text" id="ladoa"><br>
+                <p>Lado b:</p><br>
+                <input type="text" id="ladob"><br>
+                <p>Lado b:</p><br>
+                <input type="text" id="ladoc"><br>
+                <a class="waves-effect waves-light btn" onclick="calcular()" >Calcular</a><br><br>
+                <input type="text" id="area" size="30">
+            </div>    
+        </div>
+    </div>
+    <br> <br> <br>
+
+            <footer class="page-footer orange">
+                    
+                    <div class="footer-copyright">
+                      <div class="container">
+                        Ingrid Juliana Cadavid Villa<br>
+                      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                      </div>
+                    </div>
+                  </footer>
+                
+                
+                  <!--  Scripts-->
+                  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+                  <script src="js/materialize.js"></script>
+                  <script src="js/init.js"></script>
+    <script >
+               
+        function calcular() {
+            
+            var r=0;
+            var p=0;
+            var a = parseFloat(document.getElementById("ladoa").value); 
+            var b = parseFloat(document.getElementById("ladob").value);
+            var c = parseFloat(document.getElementById("ladoc").value);
+            var resultado = document.getElementById("area");
+                               
+            if (a>0 && b>0 && c>0){
+                p= (a+b+c) / 2;
+                r = Math.sqrt( p*(p-a)*(p-b)*(p-c) );
+                console.log(r);
+                resultado.value = "El área es: " + r;
+            }
+            else{
+                alert("Alguno de los lados tiene valor cero");
+            }
+                            
+         }
+    </script>
+</body>
+</html>
