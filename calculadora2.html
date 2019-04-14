@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Calculadora</title>
+    <style>
+      body
+      {
+        background-color: white;
+        color: white;
+        font-family: Helvetica;
+      }
+      table
+      {
+        border: #707485 7px solid;
+        background: #ED4FAC;
+        margin: 10px;
+        padding: 10px;
+      }
+     .button
+     {
+       display: inline-block;
+       padding: 10px 15px;
+       cursor: pointer;
+       text-align: center;
+       text-decoration: none;
+       outline: none;
+       color: #fff;
+       background-color: #552533;
+       border: none;
+       border-radius: 15px;
+       box-shadow: 0 9px #999;
+     }
+    .button:hover
+    {
+      background-color: #063343
+    }
+    .button:active
+    {
+      background-color: #063343;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+    </style>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  </head>
+  <body>
+      <nav>
+          <div class="nav-wrapper">
+              <a href="#!" class="brand-logo"></a>
+              <ul class="right hide-on-med-and-down">
+                  <li><a class="dropdown-trigger" href="index.html" >Incio<i class="material-icons right">arrow_drop_down</i></a></li>
+                  <li><a class="dropdown-trigger" href="calculadora2.html" >Reto 1<i class="material-icons right">arrow_drop_down</i></a></li>
+                  <li><a class="dropdown-trigger" href="retos2.html" >Reto 2<i class="material-icons right">arrow_drop_down</i></a></li>
+                  <li><a class="dropdown-trigger" href="retos3.html" >Reto 3<i class="material-icons right">arrow_drop_down</i></a></li>
+                  <li><a class="dropdown-trigger" href="caricaturas3.html" >Reto 4<i class="material-icons right">arrow_drop_down</i></a></li>
+              </ul>
+          </div>
+      </nav>
+
+      <br> <br> <br>
+    
+      <div class="container">
+        <div class="row">
+            <div class="col s12"></div>
+            <div class="col s4"></div>
+            <div class="col s4"></div>
+            <table> <tr> <td>
+
+              <input type="text" id="resultados" size="20"></><br><br>
+              <input type="button" class="button" value="Borrar" id="borrar" onclick=borrarC()></>
+              <input type="button" class="button" value="/" id="dividir" onclick=operacion(3)></>
+              <input type="button" class="button" value="*" id="multiplicar" onclick=operacion(4)></><br><br>
+              <input type="button" class="button" value="7" id="7" onclick=num(7)></>
+              <input type="button" class="button" value="8" id="8" onclick=num(8)></>
+              <input type="button" class="button" value="9" id="9" onclick=num(9)></>
+              <input type="button" class="button" value="-" id="restar" onclick=operacion(2)></><br><br>
+              <input type="button" class="button" value="4" id="4" onclick=num(4)></>
+              <input type="button" class="button" value="5" id="5" onclick=num(5)></>
+              <input type="button" class="button" value="6" id="6" onclick=num(6)></>
+              <input type="button" class="button" value="+" id="sumar" onclick=operacion(1)></><br><br>
+              <input type="button" class="button" value="1" id="1" onclick=num(1)></>
+              <input type="button" class="button" value="2" id="2" onclick=num(2)></>
+              <input type="button" class="button" value="3" id="3" onclick=num(3)></><br><br>
+              <input type="button" class="button" value="0" id="0" onclick=num(0)></>
+              <input type="button" class="button" value="=" id="igual" onclick=operacion(5)></><br><br>
+            </td> </tr> </table>
+            <div class="col s4"></div>
+        </div>    
+    </div>
+    
+
+    <footer class="page-footer orange">
+                        
+        <div class="footer-copyright">
+            <div class="container">
+                Ingrid Juliana Cadavid Villa<br>
+                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+        </div>
+    </footer>
+                
+                
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+    <script>
+    var r=0;
+    var num1;
+    var operador = 1;
+
+    function borrarC()
+    {
+      r=0;
+      var operador = 1;
+      resultados.value = r;
+    }
+
+    function sumar()
+    {
+      r=r+num1;
+      resultados.value = r;
+    }
+
+    function restar()
+    {
+      r=r-num1;
+      resultados.value = r;
+    }
+
+    function multiplicar()
+    {
+      r=r*num1;
+      resultados.value = r;
+    }
+
+    function dividir()
+    {
+      if (num1 != 0){
+        r=r/num1;
+        resultados.value = r;
+      }
+    }
+
+    function igual()
+    {
+      resultados.value = r;
+    }
+
+    function operacion(y)
+    {
+      operador = parseInt(y);
+      console.log(operador);
+    }
+
+    function num(y)
+    {
+      num1=parseInt(y);
+      console.log(y);
+      if (operador == 1) {
+        sumar();
+        console.log(r);
+      }
+      else if (operador == 2) {
+         restar();
+         console.log(r);
+      }
+      else if (operador == 3) {
+        dividir();
+        console.log(r);
+      }
+      else if (operador == 4) {
+        multiplicar();
+        console.log(r);
+      }
+      else if (operador == 5) {
+        igual();
+        console.log(r);
+      }
+    }
+    </script>
+
+  </body>
+</html>

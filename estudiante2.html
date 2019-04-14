@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1-Notas del estudiante</title>
+
+    <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style type="text/css">
+		
+     
+        * {
+            margin:0px;
+            padding:0px;
+        }
+        
+        #header {
+            margin:auto;
+            width:500px;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        
+        ul, ol {
+            list-style:none;
+        }
+        
+        .nav > li {
+            float:left;
+        }
+        
+        .nav li a {
+            background-color:#1FBEE8;
+            color:#fff;
+            text-decoration:none;
+            padding:10px 12px;
+            display:block;
+        }
+        
+        .nav li a:hover {
+            background-color:#596EC3;
+        }
+        
+        .nav li ul {
+            display:none;
+            position:absolute;
+            min-width:140px;
+        }
+        
+        .nav li:hover > ul {
+            display:block;
+        }
+        
+        .nav li ul li {
+            position:relative;
+        }
+        
+        .nav li ul li ul {
+            right:-140px;
+            top:0px;
+        }
+        
+    </style>
+</head>
+<body>
+        <div id="header">
+                <ul class="nav">
+                        <li><a href="index.html" >Incio<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="">Fórmulas</a>
+                        <ul>
+                            <li><a href="estudiante2.html">Calcular media</a></li>
+                            <li><a href="fuerza_atraccion.html">Fuerza de atracción</a></li>
+                            <li><a href="Einstein.html">Fórmula de Einstein</a></li>
+                            <li><a href="hipotenusa.html">Calcular hipotenusa</a></li>
+                            <li><a href="area_triangulo.html">Área de triángulo</a></li>
+                            <li><a href="circulo.html">Operaciones círculo</a></li>
+                            <li><a href="digitos.html">Redondear cifra</a></li>
+                            <li><a href="ecuaciones.html">Ecuaciones lineales</a></li>
+                            <li><a href="salario.html">Salario</a></li>
+                            <li><a href="cambio_optimo.html">Cambio óptimo</a></li>
+                            <li><a href="numero.html">Verificar positivo, cero o negativo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">Fecha y hora</a>    
+                        <ul>
+                            <li><a href="conversion_hora.html">Formato 24 horas a 12 horas</a></li>
+                            <li><a href="conversion_fecha.html">Formato fecha</a></li>
+                            <li><a href="edad.html">Calcular edad</a></li>
+                            <li><a href="bisiesto.html">Año bisiesto</a></li>
+                            <li><a href="dias_mes.html">Calcular días del mes</a></li>
+                        </ul>       
+                    </li>
+                    <li><a href="">Textos</a>
+                        <ul>
+                            <li><a href="conversion_numero.html">Formato numero</a></li>
+                            <li><a href="romanos.html">Conversión romanos</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+    <br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col s3 offset-s3"><span class="flow-text"></span>
+                <p>Notas del estudiante</p><br>
+                <p>Ingrese la nota:</p><br>
+                <input type="text" id="notas">
+                <a class="waves-effect waves-light btn" onclick="guardar()">Guardar</a><br><br>
+                <a class="waves-effect waves-light btn" onclick="calcular()">Calcular</a><br><br>
+                
+                <p id="resultados"></p><br><br>
+                <table>
+                    <tr><td>Media</td><td>Puntuacion</td></tr>
+                    <tr><td id="media1"></td><td id="puntuacion1"></td></tr>
+                </table>
+            </div>    
+        </div>
+    </div>
+    <br><br><br><br>
+    <footer class="page-footer orange">
+                    
+            <div class="footer-copyright">
+              <div class="container">
+                Ingrid Juliana Cadavid Villa<br>
+              Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+              </div>
+            </div>
+          </footer>
+        
+        
+          <!--  Scripts-->
+          <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+          <script src="js/materialize.js"></script>
+          <script src="js/init.js"></script>
+
+    <script >
+        var notas_ar = [];
+        var n = 0;
+
+        function guardar() {
+            var nota = parseInt(notas.value);
+            n++;
+            console.log(nota);
+            if (nota >= 0 && nota <= 100) {
+                notas_ar.push (nota);
+                console.log(notas_ar);
+            } else {
+                alert("Nota ingresada debe estar entre 0 y 100");
+            }   
+        }
+
+        function calcular() {
+            var total = 0;
+            var media = 0;
+            var resultado = document.getElementById("resultados"); 
+            var media1 = document.getElementById("media1");
+            var resultado1 = document.getElementById("resultado1");
+
+            j=0;
+
+            for (var i of notas_ar) {
+                total= total + notas_ar[j];
+                j++;
+                resultado.innerHTML+="Nota "+ j +" es:"+ notas_ar[j-1]+"<br>";
+                
+            }
+            if (total>=0) {
+                media=total/j;
+                console.log(media);
+            } else {
+                alert("No hay notas para calcular");
+            }
+
+            media1.innerHTML = media;
+
+            if (media>=0 && media<=59) 
+            {
+                puntuacion1.innerHTML="E";
+                console.log(puntuacion1.value);
+            } 
+            else if (media>=60 && media<=69) 
+            {
+                puntuacion1.innerHTML="D";
+            } 
+            else if (media>=70 && media<=79) 
+            {
+                puntuacion1.innerHTML="C";
+            } 
+            else if (media>=80 && media<=89) 
+            {
+                puntuacion1.innerHTML="B";
+            } 
+            else if (media>=90 && media<=100)
+            {
+                puntuacion1.innerHTML="A";
+            }
+            else{
+                alert("Media no esta en el rango 0-100");
+            }
+            
+        
+    }
+    </script>
+</body>
+</html>
