@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.css"
+      rel="stylesheet"
+    />
+    <title>Factura</title>
+  </head>
+  <body>
+        <nav>
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo"></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a class="dropdown-trigger" href="index.html" >Incio<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="calculadora2.html" >Reto 1<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="retos2.html" >Reto 2<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="retos3.html" >Reto 3<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="caricaturas3.html" >Reto 4<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="facturaReto5.html" >Reto 5<i class="material-icons right">arrow_drop_down</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+    <div id="app">
+      <div class="container">
+        <h1>Factura de venta</h1>
+        <div>
+          <p>
+            Fecha:
+            <input type="text">
+            Nombre cliente: 
+            <input type="text">
+            Nit: 
+            <input type="text">
+          </p>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <td>Item</td><td>Cantidad</td><td>Descripcion</td><td>Valor Unitario</td><td>Subtotal</td>
+            </tr>
+            <tr v-for="producto in productos">
+                <td>{{producto.id}}</td><td>{{producto.cantidad}}</td><td>{{producto.descripcion}}</td><td>{{producto.valorUnitario}}</td><td>{{producto.subtotal}}</td>
+            </tr>
+          </table><br>
+          <vs-button @click="calcular()">Calcular</vs-button>
+          Total: {{total}} <br> <br>
+          <div class="row">
+            <div class="col s12 m6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Producto nuevo</span>
+                        <div>
+                            ID
+                            <input type="text" v-model = producto.id>
+                        </div>
+                        <div>
+                            CANTIDAD
+                            <input type="text" v-model = producto.cantidad>
+                        </div>
+                        <div>
+                            DESCRIPCION
+                            <input type="text" v-model = producto.descripcion>
+                        </div>
+                        <div>
+                            VALOR UNITARIO
+                            <input type="text" v-model = producto.valorUnitario>
+                        </div>
+                        
+                    
+                        <vs-button @click="otroProducto()">Agregar Producto</vs-button>
+                    </div>
+                </div>
+            </div>
+         </div>
+        </div>
+        
+        
+
+        
+      </div>
+    </div>
+
+    <footer class="page-footer orange">
+                        
+            <div class="footer-copyright">
+                <div class="container">
+                    Ingrid Juliana Cadavid Villa<br>
+                    Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                </div>
+            </div>
+        </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.umd.js"></script>
+    <script src="https://unpkg.com/vue-select@latest"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+       
+
+    <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            total: 0,
+            producto:{},
+            productos: [{id:1, descripcion: "producto1", cantidad: 1, valorUnitario: 5000, subtotal: ""}],
+            i: 0,
+            j: 0,
+            productoNuevo: {id:"", descripcion: "", cantidad: "", valorUnitario: "", subtotal: ""}
+          },
+          methods: {
+            calcular: function(){
+              this.productos[this.i].subtotal = this.productos[this.i].cantidad * this.productos[this.i].valorUnitario;
+              this.total = this.total + this.productos[this.i].subtotal;
+              this.i++;
+              
+            },
+            
+            otroProducto: function(){
+                console.log("entroa otro producto")
+                var sub = this.producto.cantidad*this.producto.valorUnitario;
+                var prod= {...this.producto,sub};
+               // prod = this.producto;
+                this.productos.push(prod)
+                this.calcular();
+            }
+          }
+        }
+        )
+      </script>
+  </body>
+</html>
